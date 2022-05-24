@@ -7,6 +7,9 @@ TagManager:
   - WATER
   - NATURE
   - FIRE
+  - WATER_B
+  - NATURE_B
+  - FIRE_B
   layers:
   - Default
   - TransparentFX

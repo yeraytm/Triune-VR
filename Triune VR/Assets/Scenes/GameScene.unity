@@ -15055,7 +15055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 5c1b4e21ca0489847a9faa7c027ac564, type: 3}
       propertyPath: m_TagString
-      value: WATER
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5c1b4e21ca0489847a9faa7c027ac564, type: 3}
       propertyPath: m_RootOrder
@@ -17815,6 +17815,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 108225653778528902, guid: 3e2accafa3a5f1b40ba86cf39bcb49a7, type: 3}
   m_PrefabInstance: {fileID: 1802820019}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1811528689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5c1b4e21ca0489847a9faa7c027ac564, type: 3}
+  m_PrefabInstance: {fileID: 1494323058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1813142761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18688,6 +18693,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5c1b4e21ca0489847a9faa7c027ac564, type: 3}
   m_PrefabInstance: {fileID: 1494323058}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1899145229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811528689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec31b71ca7dee84382591bfaf0ad618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1001 &1902630035
 PrefabInstance:
   m_ObjectHideFlags: 0
