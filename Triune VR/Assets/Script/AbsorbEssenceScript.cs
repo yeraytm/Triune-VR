@@ -21,7 +21,7 @@ public class AbsorbEssenceScript : MonoBehaviour
         if (Physics.Raycast(leftController.transform.position, leftController.transform.forward, out hit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            //Debug.Log("Did Hit");
 
             switch (hit.collider.tag)
             {

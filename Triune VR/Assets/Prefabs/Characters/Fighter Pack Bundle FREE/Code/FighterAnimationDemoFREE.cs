@@ -18,7 +18,7 @@ public class FighterAnimationDemoFREE : MonoBehaviour {
 		resetPos = defaultCamTransform.position;
 		resetRot = defaultCamTransform.rotation;
 		fighter = GameObject.FindWithTag("Player");
-		fighter.transform.position = new Vector3(0,0,0);
+		//fighter.transform.position = new Vector3(0,0,0);
 	}
 
 	void OnGUI () 
