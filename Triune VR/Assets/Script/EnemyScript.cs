@@ -11,7 +11,11 @@ public class EnemyScript : MonoBehaviour
         NATURE
     }
 
+    private int lifes = 1;
+
     public EnemyType type;
+    public Vector3 scaleIncrease = new Vector3( 1.0f, 1.0f, 1.0f );
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,10 +47,11 @@ public class EnemyScript : MonoBehaviour
                         break;
 
                     case EnemyType.WATER:
+                        Boost();
                         break;
 
                     case EnemyType.NATURE:
-                        Destroy(gameObject);
+                        Damage();
                         break;
                 }
                 break;
@@ -55,13 +60,14 @@ public class EnemyScript : MonoBehaviour
                 switch (type)
                 {
                     case EnemyType.FIRE:
-                        Destroy(gameObject);
+                        Damage();
                         break;
 
                     case EnemyType.WATER:
                         break;
 
                     case EnemyType.NATURE:
+                        Boost();
                         break;
                 }
                 break;
@@ -70,10 +76,11 @@ public class EnemyScript : MonoBehaviour
                 switch (type)
                 {
                     case EnemyType.FIRE:
+                        Boost();
                         break;
 
                     case EnemyType.WATER:
-                        Destroy(gameObject);
+                        Damage();
                         break;
 
                     case EnemyType.NATURE:
@@ -81,5 +88,21 @@ public class EnemyScript : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    void Damage()
+    {
+        lifes -= 1;
+
+        if (lifes == 0) Destroy(gameObject);
+
+        transform.localScale -= scaleIncrease;
+    }
+
+    void Boost()
+    {
+        lifes += 1;
+
+        transform.localScale += scaleIncrease;
     }
 }
