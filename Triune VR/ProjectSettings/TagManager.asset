@@ -10,6 +10,8 @@ TagManager:
   - WATER_B
   - NATURE_B
   - FIRE_B
+  - Collide
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -1451,7 +1451,7 @@ GameObject:
   - component: {fileID: 3865716638089665878}
   m_Layer: 0
   m_Name: Water_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1519,6 +1519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec31b71ca7dee84382591bfaf0ad618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeLimit: 3
   type: 1
   scaleIncrease: {x: 0.6, y: 0.6, z: 0.6}
 --- !u!114 &3865716638089665878

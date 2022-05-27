@@ -15,16 +15,8 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision: " + collision.gameObject.tag);
-        switch (collision.gameObject.tag)
-        {
-            case "FIRE":
-            case "NATURE":
-            case "WATER":
-                Destroy(gameObject);
-                break;
-            default:
-                break;
-        }
+        Debug.Log("collision: " + collision.gameObject.name);
+        if (collision.gameObject.tag == "Enemy")
+            Destroy(gameObject);
     }
 }
