@@ -13,6 +13,7 @@ public class EnemyScript : MonoBehaviour
 
     private int lifes = 1;
 
+    public int lifeLimit = 3;
     public EnemyType type;
     public Vector3 scaleIncrease = new Vector3( 1.0f, 1.0f, 1.0f );
 
@@ -44,10 +45,11 @@ public class EnemyScript : MonoBehaviour
                 switch (type)
                 {
                     case EnemyType.FIRE:
+                        Boost();
                         break;
 
                     case EnemyType.WATER:
-                        Boost();
+                        SpeedUp();
                         break;
 
                     case EnemyType.NATURE:
@@ -64,10 +66,11 @@ public class EnemyScript : MonoBehaviour
                         break;
 
                     case EnemyType.WATER:
+                        Boost();
                         break;
 
                     case EnemyType.NATURE:
-                        Boost();
+                        SpeedUp();
                         break;
                 }
                 break;
@@ -76,7 +79,7 @@ public class EnemyScript : MonoBehaviour
                 switch (type)
                 {
                     case EnemyType.FIRE:
-                        Boost();
+                        SpeedUp();
                         break;
 
                     case EnemyType.WATER:
@@ -84,6 +87,7 @@ public class EnemyScript : MonoBehaviour
                         break;
 
                     case EnemyType.NATURE:
+                        Boost();
                         break;
                 }
                 break;
@@ -101,8 +105,19 @@ public class EnemyScript : MonoBehaviour
 
     void Boost()
     {
+        if (lifes >= lifeLimit)
+        {
+            lifes = 3;
+            return;
+        }
+
         lifes += 1;
 
         transform.localScale += scaleIncrease;
+    }
+
+    void SpeedUp()
+    {
+
     }
 }

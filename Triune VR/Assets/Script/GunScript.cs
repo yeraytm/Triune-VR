@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum State
+{
+    EMPTY,
+    FIRE,
+    WATER,
+    NATURE
+}
+
 public class GunScript : MonoBehaviour
 {
-    public enum State
-    {
-        EMPTY,
-        FIRE,
-        WATER,
-        NATURE
-    }
 
     //Public
     [Header("Gun Positioning")]
@@ -59,7 +60,7 @@ public class GunScript : MonoBehaviour
         if (charged && Input.GetKey("return")) Shot(state);
     }
 
-    void ChangeGunState(State s)
+    public void ChangeGunState(State s)
     {
         switch (s)
         {
