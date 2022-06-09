@@ -2,11 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.XR;
 public class MainMenuScript : MonoBehaviour
 {
          [SerializeField] private GameObject MainMenuPanel;
          [SerializeField] private GameObject SettingsPanel;
+         [SerializeField] private GameObject PausePanel;
+         [SerializeField] private GameObject HUDPanel;
+         [SerializeField] private TMPro.TextMeshProUGUI KillValue;
+
+    public int killcounter = 0;
+    public bool fullscreen;
+    private bool isPause = false;
+    private void Awake()
+    {
+    }
+    private void Update()
+    {
+        KillValue.text = killcounter.ToString();
+        //if(false)
+        //{
+        //    if (isPause)
+        //    {
+        //        Resume();
+        //    }
+        //    else
+        //    {
+        //        Pause();
+        //    }
+        //}
+
+    }
     public void TestFunc()
     {
         Debug.Log("HELLO MADAFAKA");
@@ -14,7 +42,10 @@ public class MainMenuScript : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        HUDPanel.SetActive(true);
+        SettingsPanel.SetActive(false);
+        MainMenuPanel.SetActive(false);
+        PausePanel.SetActive(false);
     }
     public void Exit()
     {
@@ -23,34 +54,39 @@ public class MainMenuScript : MonoBehaviour
 
     public void OpenSettings()
     {
+        HUDPanel.SetActive(false);
         SettingsPanel.SetActive(true);
         MainMenuPanel.SetActive(false);
+        PausePanel.SetActive(false);
     }
     public void CloseSettings()
     {
+        HUDPanel.SetActive(false);
         SettingsPanel.SetActive(false);
-        MainMenuPanel.SetActive(true);
+        if(isPause)
+        {
+            MainMenuPanel.SetActive(false);
+            PausePanel.SetActive(true);
+        }
+        else
+        {
+            MainMenuPanel.SetActive(true);
+            PausePanel.SetActive(false);
+        }
+        
     }
 
-    public void SetResolution(int val)
+    public void Resume()
     {
-        switch (val)
-        {
-            case 0:
-                Screen.SetResolution(1920, 1080, false);
-                Debug.Log("1080");
-                break;
-            case 1:
-                Screen.SetResolution(1280, 720, false);
-                Debug.Log("720");
+        Time.timeScale = 1f;
+        PausePanel.SetActive(false);
+        isPause = false;
+    }
 
-                break;
-            case 2:
-                Screen.SetResolution(640, 360, false);
-                Debug.Log("360");
-
-                break;
-
-        }
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        PausePanel.SetActive(true);
+        isPause = true;
     }
 }

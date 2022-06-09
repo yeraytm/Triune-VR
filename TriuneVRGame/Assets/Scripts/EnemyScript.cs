@@ -11,7 +11,6 @@ public class EnemyScript : MonoBehaviour
         WATER,
         NATURE
     }
-
     private int lifes = 1;
     public int lifeLimit = 3;
     public EnemyType type;
@@ -27,8 +26,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         fighter = GameObject.FindWithTag("Player");
-
-        navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         navMeshAgent.destination = fighter.transform.position;
     }
 
@@ -117,7 +115,12 @@ public class EnemyScript : MonoBehaviour
     {
         lifes -= 1;
 
-        if (lifes == 0) Destroy(gameObject);
+        if (lifes == 0)
+        {
+            GameObject.Find("UI Manager").GetComponent<MainMenuScript>().killcounter += 1;
+
+            Destroy(gameObject);
+        }
 
         transform.localScale -= scaleIncrease;
     }
