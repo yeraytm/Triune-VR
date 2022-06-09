@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FIRE_B
+  - WATER_B
+  - NATURE_B
+  - NATURE
+  - FIRE
+  - WATER
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Body
+  - Grab
   - 
   - 
   - 

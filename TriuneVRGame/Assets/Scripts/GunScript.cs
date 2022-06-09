@@ -12,11 +12,12 @@ public enum State
 
 public class GunScript : MonoBehaviour
 {
-
     //Public
-    [Header("Gun Positioning")]
-    //public Transform follower;
-    public Vector3 offset;
+    [Header("Gun Parameters")]
+    public float speed = 40;
+    public Transform barrel;
+    //public AudioSource audioSource;
+    //public AudioClip audioClip;
 
     [Header("Gun Textures")]
     public Texture2D emptyTexture;
@@ -28,7 +29,6 @@ public class GunScript : MonoBehaviour
     public GameObject firePrefab;
     public GameObject waterPrefab;
     public GameObject naturePrefab;
-    public float force = 12;
 
     [Header("Gun State")]
     public State state = State.EMPTY;
@@ -40,9 +40,6 @@ public class GunScript : MonoBehaviour
     // Functions
     void Start()
     {
-        //transform.SetPositionAndRotation(follower.position, follower.rotation);
-        //transform.Translate(offset);
-
         meshRender = gameObject.GetComponent<MeshRenderer>();
 
         ChangeGunState(state);
@@ -50,14 +47,13 @@ public class GunScript : MonoBehaviour
 
     void Update()
     {
-        //transform.SetPositionAndRotation(follower.position, follower.rotation);
-        //transform.Translate(offset);
-
         //if (Input.GetKey("0")) ChangeGunState(State.EMPTY);
         //if (Input.GetKey("1")) ChangeGunState(State.FIRE);
         //if (Input.GetKey("2")) ChangeGunState(State.WATER);
         //if (Input.GetKey("3")) ChangeGunState(State.NATURE);
         //if (charged && Input.GetKey("return")) Shot(state);
+        Debug.Log(speed);
+        Debug.Log(barrel.forward);
     }
 
     public void ChangeGunState(State s)
@@ -81,35 +77,35 @@ public class GunScript : MonoBehaviour
                 charged = true;
                 break;
         }
-
         state = s;
     }
 
-    void Shot(State s)
+    public void Shot()
     {
-        Vector3 bulletPosition = new Vector3(transform.position.x + 2, transform.position.y + 0.25f, transform.position.z);
+        GameObject spawnedBullet = null;
 
-        GameObject bulletInstance = null;
-
-        switch (s)
+        switch (state)
         {
             case State.FIRE:
-                bulletInstance = Instantiate(firePrefab, bulletPosition, transform.rotation);
+                spawnedBullet = Instantiate(firePrefab, barrel.position, barrel.rotation);
                 break;
             case State.WATER:
-                bulletInstance = Instantiate(waterPrefab, bulletPosition, transform.rotation);
+                spawnedBullet = Instantiate(waterPrefab, barrel.position, barrel.rotation);
                 break;
             case State.NATURE:
-                bulletInstance = Instantiate(naturePrefab, bulletPosition, transform.rotation);
+                spawnedBullet = Instantiate(naturePrefab, barrel.position, barrel.rotation);
                 break;
             default:
                 Debug.Log("Error: An empty shot occured");
                 break;
         }
 
-        Rigidbody rB = bulletInstance.GetComponent<Rigidbody>();
-        rB.AddForce(transform.forward * force * 200);
-
-        ChangeGunState(State.EMPTY);
+        if (state != State.EMPTY)
+        {
+            spawnedBullet.GetComponent<Rigidbody>().velocity = speed * barrel.forward;
+            //audioSource.PlayOneShot(audioClip);
+            Destroy(spawnedBullet, 3);
+            //ChangeGunState(State.EMPTY);
+        }
     }
 }
