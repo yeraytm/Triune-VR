@@ -8,7 +8,7 @@ public class EnemyGeneration : MonoBehaviour
     public GameObject[] spawnee;
     private int generationCounter;
     private int randMax = 500;
-    private float diff = 0.0f;
+    private float diff = 2.0f;
     // Update is called once per frame
     void Update()
     {
@@ -43,9 +43,8 @@ public class EnemyGeneration : MonoBehaviour
 
     public void ChangeDifficulty(float difficulty)
     {
-        Debug.Log("Difficulty: " + difficulty);
+        //Debug.Log("Difficulty: " + difficulty);
 
         diff = difficulty;
-
     }
 }

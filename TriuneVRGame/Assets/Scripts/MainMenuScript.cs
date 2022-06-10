@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
+
 public class MainMenuScript : MonoBehaviour
 {
          [SerializeField] private GameObject MainMenuPanel;
@@ -13,31 +13,40 @@ public class MainMenuScript : MonoBehaviour
          [SerializeField] private GameObject HUDPanel;
          [SerializeField] private TMPro.TextMeshProUGUI KillValue;
 
+    public XRController leftController;
+    public XRController rightController;
+    public InputHelpers.Button pauseButton;
+
     public int killcounter = 0;
     public bool fullscreen;
     private bool isPause = false;
-    private void Awake()
+
+    private void Start()
     {
+        Time.timeScale = 0.0f;
     }
+
     private void Update()
     {
         KillValue.text = killcounter.ToString();
-        //if(false)
-        //{
-        //    if (isPause)
-        //    {
-        //        Resume();
-        //    }
-        //    else
-        //    {
-        //        Pause();
-        //    }
-        //}
+
+        if (CheckIfActivated(leftController) || CheckIfActivated(rightController))
+        {
+            if (isPause)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
 
     }
-    public void TestFunc()
+    public bool CheckIfActivated(XRController controller)
     {
-        Debug.Log("HELLO MADAFAKA");
+        InputHelpers.IsPressed(controller.inputDevice, pauseButton, out bool isActivated);
+        return isActivated;
     }
 
     public void Play()
@@ -46,7 +55,10 @@ public class MainMenuScript : MonoBehaviour
         SettingsPanel.SetActive(false);
         MainMenuPanel.SetActive(false);
         PausePanel.SetActive(false);
+
+        Time.timeScale = 1.0f;
     }
+
     public void Exit()
     {
         Application.Quit();
@@ -59,6 +71,7 @@ public class MainMenuScript : MonoBehaviour
         MainMenuPanel.SetActive(false);
         PausePanel.SetActive(false);
     }
+
     public void CloseSettings()
     {
         HUDPanel.SetActive(false);

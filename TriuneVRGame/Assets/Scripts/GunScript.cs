@@ -35,7 +35,6 @@ public class GunScript : MonoBehaviour
 
     // Private
     private MeshRenderer meshRender;
-    private bool charged = false;
 
     // Functions
     void Start()
@@ -45,36 +44,21 @@ public class GunScript : MonoBehaviour
         ChangeGunState(state);
     }
 
-    void Update()
-    {
-        //if (Input.GetKey("0")) ChangeGunState(State.EMPTY);
-        //if (Input.GetKey("1")) ChangeGunState(State.FIRE);
-        //if (Input.GetKey("2")) ChangeGunState(State.WATER);
-        //if (Input.GetKey("3")) ChangeGunState(State.NATURE);
-        //if (charged && Input.GetKey("return")) Shot(state);
-        Debug.Log(speed);
-        Debug.Log(barrel.forward);
-    }
-
     public void ChangeGunState(State s)
     {
         switch (s)
         {
             case State.EMPTY:
                 meshRender.material.mainTexture = emptyTexture;
-                charged = false;
                 break;
             case State.FIRE:
                 meshRender.material.mainTexture = fireTexture;
-                charged = true;
                 break;
             case State.WATER:
                 meshRender.material.mainTexture = waterTexture;
-                charged = true;
                 break;
             case State.NATURE:
                 meshRender.material.mainTexture = natureTexture;
-                charged = true;
                 break;
         }
         state = s;
@@ -103,9 +87,8 @@ public class GunScript : MonoBehaviour
         if (state != State.EMPTY)
         {
             spawnedBullet.GetComponent<Rigidbody>().velocity = speed * barrel.forward;
-            //audioSource.PlayOneShot(audioClip);
             Destroy(spawnedBullet, 3);
-            //ChangeGunState(State.EMPTY);
+            ChangeGunState(State.EMPTY);
         }
     }
 }

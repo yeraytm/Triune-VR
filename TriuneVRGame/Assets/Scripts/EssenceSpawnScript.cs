@@ -39,30 +39,21 @@ public class EssenceSpawnScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Adding Water Triggers");
         foreach (Transform t in transform.Find("Water Trigger").transform)
         {
             t.gameObject.SetActive(false);
             waterTriggers.Add(new EssenceSource(t.gameObject, false, State.WATER));
-            Debug.Log(t.gameObject.name);
         }
-        Debug.Log("--------------------------");
-        Debug.Log("Adding Fire Triggers");
         foreach (Transform t in transform.Find("Fire Trigger").transform)
         {
             t.gameObject.SetActive(false);
             fireTriggers.Add(new EssenceSource(t.gameObject, false, State.FIRE));
-            Debug.Log(t.gameObject.name);
         }
-        Debug.Log("--------------------------");
-        Debug.Log("Adding Nature Triggers");
         foreach (Transform t in transform.Find("Nature Trigger").transform)
         {
             t.gameObject.SetActive(false);
             natureTriggers.Add(new EssenceSource(t.gameObject, false, State.NATURE));
-            Debug.Log(t.gameObject.name);
         }
-        Debug.Log("--------------------------");
 
         Spawn(State.WATER);
         Spawn(State.WATER);
@@ -70,7 +61,6 @@ public class EssenceSpawnScript : MonoBehaviour
         Spawn(State.NATURE);
         Spawn(State.FIRE);
         Spawn(State.FIRE);
-        Debug.Log("--------------------------");
     }
 
     void Spawn(State state)
@@ -108,7 +98,6 @@ public class EssenceSpawnScript : MonoBehaviour
                 return;
         }
 
-        Debug.Log("Spawning " + source.source.name);
         source.Active(true);
     }
 
@@ -122,7 +111,6 @@ public class EssenceSpawnScript : MonoBehaviour
                     if (eS.source.transform == transf)
                     {
                         eS.Active(false);
-                        Debug.Log("Dispawning " + eS.source.name);
                         break;
                     }
                 }
@@ -158,7 +146,6 @@ public class EssenceSpawnScript : MonoBehaviour
 
     public IEnumerator Respawn(Transform transf, State state)
     {
-        Debug.Log("Respawning " + transf.gameObject.name);
         Dispawn(transf, state);
 
         yield return new WaitForSeconds(spawningTime);

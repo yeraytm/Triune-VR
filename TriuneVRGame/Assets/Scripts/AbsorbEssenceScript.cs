@@ -21,12 +21,11 @@ public class AbsorbEssenceScript : MonoBehaviour
 
     public void Absorb()
     {
+        Debug.Log("ABSORBIIIIIING");
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (/*Input.GetKeyDown("return") && */Physics.Raycast(cannon.position, cannon.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(cannon.position, cannon.forward, out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-
             bool hitTrigger = true;
             State state = State.EMPTY;
 

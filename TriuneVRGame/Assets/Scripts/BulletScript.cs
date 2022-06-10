@@ -15,7 +15,6 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision: " + collision.gameObject.name);
         if (collision.gameObject.tag == "Enemy")
             Destroy(gameObject);
     }

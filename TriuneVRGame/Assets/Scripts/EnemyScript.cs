@@ -33,7 +33,8 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        float distance = Vector3.Distance(gameObject.transform.position, fighter.transform.position);
+        navMeshAgent.SetDestination(GameObject.FindWithTag("Player").transform.position);
+        float distance = Vector3.Distance(gameObject.transform.position, GameObject.FindWithTag("Player").transform.position);
         if (distance < 5 && !attacking)
         {
             attacking = true;
